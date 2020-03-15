@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+<title>Desafio ESIG JSF</title>
+</h:head>
+    <h:body>
+
+        <h:form id="form">
+            <p:panel id="basic" header="Lembretes" footer="Atividades do dia" style="margin-bottom:20px">
+
+                <h:link value="Novo Lembrete" outcome="adicionar"/>
+                <p:dataTable value="#{lembreteBean.lembretes}" var="lembrete">
+                    <p:column style="width:20px">
+                        <f:facet name="header">Id</f:facet>
+                        #{lembrete.id}
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">Título</f:facet>
+                        #{lembrete.titulo}
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">Descrição</f:facet>
+                        #{lembrete.descricao}
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">Início</f:facet>
+                        <h:outputText value="#{lembrete.dataInicio.time}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column style="width:80px">
+                        <h:link value="Editar" outcome="editar">
+                            <f:param name="lembrete" value="#{lembrete.id}"/>
+                        </h:link>
+                    </p:column>
+
+                    <p:column style="width:80px">
+                        <h:link value="Remover" outcome="remover">
+                            <f:param name="lembrete" value="#{lembrete.id}"/>
+                        </h:link>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
